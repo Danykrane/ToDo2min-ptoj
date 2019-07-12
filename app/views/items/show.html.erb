@@ -1,0 +1,9 @@
+<div class="kk col-md-6 col-md-offset-3">
+	<h2><%= @item.title %></h2>
+	<p class = "input-field1"><%= @item.description %></p>
+
+	<%= link_to "Изменить", edit_item_path(@item), class: "btn-custom" %>
+	<%= link_to "Удалить", item_path(@item), method: :delete, data: { confirm: "Вы уверены?" }, class: "btn-custom" %>
+	<%= link_to "Назад", root_path , class: "btn-custom"%>
+	
+</div>
