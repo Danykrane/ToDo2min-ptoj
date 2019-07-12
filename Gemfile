@@ -6,7 +6,6 @@ ruby '2.5.1'
 
 
 gem 'rails'
-gem 'sqlite3'
 
 group :assets do
 	gem 'sass-rails'
@@ -22,6 +21,7 @@ end
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'simple_form'
+gem 'puma'
 
 group :production do
 	gem 'pg' 
