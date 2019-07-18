@@ -20,7 +20,7 @@
 				<% if user_signed_in? %>
 				<% if current_user.present? %>
 					<li><%= link_to "Выйти", destroy_user_session_path, method: :delete %></li>
-					<li><%= link_to "Мой граф", destroy_user_session_path, method: :delete %></li>
+					<!-- <li><%= link_to "Мой граф", destroy_user_session_path, method: :delete %></li> -->
 				<% else %>
 					<li><%= link_to "Войти", new_user_session_path %></li>
 				<% end %>

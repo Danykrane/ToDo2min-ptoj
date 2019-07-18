@@ -6,8 +6,8 @@ jQuery ->
         element: 'items_chart'
         data: $('#items_chart').data('items')
 
-        xkey: 'id'
-        ykeys: ['created_at']
-        labels: ['created_at']
+        xkey: 'created_at'
+        ykeys: ['completed_at']
+        labels: ['title']
         lineColors: ['#000000'],
         pointFillColors: ['#9FFF0A']

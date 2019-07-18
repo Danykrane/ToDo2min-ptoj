@@ -42,15 +42,21 @@
 							<p style="opacity: 0.8;" class="time-created-at item-sub-title">Создана <%= time_ago_in_words(item.created_at) %> назад</p> 
 						
 						<!-- 	условие проверки на просроченность -->
+
 							<% a = time_ago_in_words(item.created_at).to_s.split(' ')%>
-							<% c = a.count{|a| a.size<8}%>
-							<% if (c > 2) %>
+
+						
+						<%if  a.include? "hours" %>
 							<% q =  a.find{|a| a.size<3}; f = q.to_i -  2 %>
 								<% if (f.to_i > 1) %>
 						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен <%= f %> часов назад</h4>
 						<% end %>
+						
+						<%elsif  a[1] == "day" || "days" %>
+							<% q =  a.find{|a| a.size<3};f = q.to_i %>
+						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен <%= f %> дня назад</h4>
+					
 
-							<!-- <span style="color: red; font-size: 2em">U</span> -->
 							<% else %>
 							<% end %>
 						</div>
