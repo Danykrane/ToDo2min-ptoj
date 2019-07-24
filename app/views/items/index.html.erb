@@ -44,7 +44,7 @@
 						
 						<% a = time_ago_in_words(item.created_at).to_s.split(' ')%>
 						<!-- 	условие проверки на просроченность -->
-						<%= p a%>
+						
 
 						<%if  a.include? ('minutes') or a.include? ('minute') or a.include? ('about') or a.include? ('days')%>
 						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:##8120A6">В ожидании выполнения</h4>
@@ -52,9 +52,9 @@
 
 
 						<%if  a.include? "hours" %>
-						<%= p a%>
+						
 						<% q =  a.find{|a| a.size<3}; f = q.to_i -  2 %>
-						<%= p f %>
+					
 
 								<% if (f.to_i == 0) %> <!-- 1 час -->
 						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен, приступите к выполнению</h4>
