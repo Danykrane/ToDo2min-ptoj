@@ -1,4 +1,5 @@
 
+
 <!-- Checks to see if a user is signed in, if one is, it will list its checklist. -->
 <!-- If not, it will render the landing page that asks the user to sign up or login. -->
 
@@ -41,38 +42,65 @@
 							<p class="item-sub-title item-desc input-field1"><%= item.description %></p>
 							<p style="opacity: 0.8;" class="time-created-at item-sub-title">Создана <%= time_ago_in_words(item.created_at) %> назад</p> 
 						
+						<% a = time_ago_in_words(item.created_at).to_s.split(' ')%>
 						<!-- 	условие проверки на просроченность -->
+						<%= p a%>
 
-							<% a = time_ago_in_words(item.created_at).to_s.split(' ')%>
-
-						
-						<%if  a.include? "hours" %>
-							<% q =  a.find{|a| a.size<3}; f = q.to_i -  2 %>
-								<% if (f.to_i > 1) %>
-						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен <%= f %> часов назад</h4>
+						<%if  a.include? ('minutes') or a.include? ('minute') or a.include? ('about') or a.include? ('days')%>
+						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:##8120A6">В ожидании выполнения</h4>
 						<% end %>
-						
-						<%elsif  a[1] == "day" || "days" %>
-							<% q =  a.find{|a| a.size<3};f = q.to_i %>
-						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен <%= f %> дня назад</h4>
-					
 
-							<% else %>
-							<% end %>
+
+						<%if  a.include? "hours" %>
+						<%= p a%>
+						<% q =  a.find{|a| a.size<3}; f = q.to_i -  2 %>
+						<%= p f %>
+
+								<% if (f.to_i == 0) %> <!-- 1 час -->
+						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен, приступите к выполнению</h4>
+								<% end %>
+
+								<% if (f.to_i == 1) %> <!-- 1 час -->
+						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен <%= f %> час назад</h4>
+								<% end %>
+								
+								<% if (f.to_i < 5 and f.to_i > 1 ) %> <!-- 2-4 часа -->
+						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен <%= f %> часа назад</h4>
+								<% end%>
+								<!-- 5 часов -->
+								<% if (f.to_i > 4) %>
+						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен <%= f %> часов назад</h4>
+								<% end %>
+						<% end %>
+
+						<%if  a.include? ("days") or a.include? ("day") %>
+						
+							<% q =  a.find{|a| a.size<3}; f = q.to_i%>
+								<% if (f.to_i == 1) %> <!-- 1 день -->
+						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен <%= f %> день назад</h4>
+								<% elsif (f.to_i < 5) %> <!-- 2-4 день -->
+						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен <%= f %> дня назад</h4>
+							<% else %> 	
+							<!-- 5 дней -->
+
+						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен <%= f %> дней назад</h4>
+								<% end %>
+
+						<% end %>
+
 						</div>
+						
 						<div class="col-md-2">
 							<p><%= link_to complete_item_path(item), method: :patch do %></p>
 								<i class="fa fa-check fa-lg"></i>
-							
 							<% end %>
 						</div>
+
+
 						<div class="col-md-2">
 							<p><%= link_to item, method: :delete, data: { confirm: "Вы уверены?" } do %></p>
 								<i class="fa fa-trash fa-lg"></i>
 							<% end %>
-							
-
-						
 						</div>
 					</div>
 				<% end %>
