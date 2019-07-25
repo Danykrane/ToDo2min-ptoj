@@ -1,5 +1,4 @@
 
-
 <!-- Checks to see if a user is signed in, if one is, it will list its checklist. -->
 <!-- If not, it will render the landing page that asks the user to sign up or login. -->
 
@@ -44,7 +43,7 @@
 						
 						<% a = time_ago_in_words(item.created_at).to_s.split(' ')%>
 						<!-- 	условие проверки на просроченность -->
-						
+					
 
 						<%if  a.include? ('minutes') or a.include? ('minute') or a.include? ('about') or a.include? ('days')%>
 						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:##8120A6">В ожидании выполнения</h4>
@@ -85,7 +84,6 @@
 
 						<h4 style=" font-family: 'Oswald', sans-serif;font-size: 1.5em; color:#FB302F">Срок выполнения просрочен <%= f %> дней назад</h4>
 								<% end %>
-
 						<% end %>
 
 						</div>
